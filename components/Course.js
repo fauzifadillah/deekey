@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { Dimensions } from "react-native";
 
+const screenWidth = Dimensions.get("window").width;
+var cardWidth = screenWidth - 40;
 const Course = (props) => (
   <Container>
     <Cover>

@@ -1,21 +1,53 @@
 import React from "react";
 import styled from "styled-components";
+import { Dimensions } from "react-native";
 
-const CardOther = (props) => (
-  <Container>
-    <Cover>
-      <Image source={props.image} />
-      <Title>{props.title}</Title>
-    </Cover>
-    <Content>
-      <Logo source={props.logo} />
-      <Wrapper>
-        <Caption>{props.caption}</Caption>
-        <Subtitle>{props.subtitle}</Subtitle>
-      </Wrapper>
-    </Content>
-  </Container>
-);
+const screenWidth = Dimensions.get("window").width;
+
+function getCardOtherWidth(screenWidth) {
+  var cardWidth = screenWidth - 40;
+
+  if (screenWidth >= 768) {
+    cardWidth = (screenWidth - 60) / 2;
+  }
+
+  if (screenWidth >= 1024) {
+    cardWidth = (screenWidth - 80) / 3;
+  }
+  return cardWidth;
+}
+class CardOther extends React.Component {
+  state = {
+    cardWidth: getCardOtherWidth(screenWidth),
+  };
+  componentDidMount() {
+    Dimensions.addEventListener("change", this.adaptLayout);
+  }
+
+  adaptLayout = (dimensions) => {
+    this.setState({
+      cardWidth: getCardOtherWidth(dimensions.window.width),
+    });
+  };
+
+  render() {
+    return (
+      <Container style={{ width: this.state.cardWidth }}>
+        <Cover>
+          <Image source={this.props.image} />
+          <Title>{this.props.title}</Title>
+        </Cover>
+        <Content>
+          <Logo source={this.props.logo} />
+          <Wrapper>
+            <Caption>{this.props.caption}</Caption>
+            <Subtitle>{this.props.subtitle}</Subtitle>
+          </Wrapper>
+        </Content>
+      </Container>
+    );
+  }
+}
 
 export default CardOther;
 
@@ -50,8 +82,8 @@ const Container = styled.View`
   width: 315px;
   height: 280px;
   border-radius: 14px;
-  margin-left: 20px;
-  margin-top: 20px;
+  margin: 10px 10px;
+  ${"" /* margin-top: 20px; */}
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 `;
 
@@ -77,6 +109,6 @@ const Title = styled.Text`
   font-weight: bold;
   margin-top: 20px;
   margin-left: 20px;
-  width: 170px;
+  width: 180px;
   text-transform: uppercase;
 `;

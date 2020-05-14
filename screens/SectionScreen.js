@@ -4,6 +4,22 @@ import { StatusBar, ScrollView } from "react-native";
 import { WebView } from "react-native-webview";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Dimensions } from "react-native";
+
+const screenWidth = Dimensions.get("window").width;
+
+function getCardOtherWidth(screenWidth) {
+  var cardWidth = screenWidth - 40;
+
+  if (screenWidth >= 768) {
+    cardWidth = (screenWidth - 60) / 2;
+  }
+
+  if (screenWidth >= 1024) {
+    cardWidth = (screenWidth - 80) / 3;
+  }
+  return cardWidth;
+}
 class SectionSceen extends React.Component {
   static navigationOptions = {
     headerShown: false,
@@ -52,10 +68,20 @@ class SectionSceen extends React.Component {
           <Container>
             <TitleContent>{section.title} TREATMENT</TitleContent>
             <DescContent>{section.detailTreatment}</DescContent>
-            <GambarSepatu source={section.gambarInfo} resizemode="contain" />
             <DescContent>TIME: {section.timeTreatment}</DescContent>
             <DescContent>PRICE: {section.price}</DescContent>
-            <TouchableOpacity onPress={this.props.closeMenu}>
+            <GambarSepatu
+              source={section.gambarInfo}
+              resizemode="contain"
+              style={{ width: screenWidth, height: screenWidth / 3.5 }}
+            />
+
+            <TouchableOpacity
+              style={{ marginTop: 0 }}
+              onPress={() => {
+                this.props.navigation.navigate("Checkout");
+              }}
+            >
               <Purchase>
                 <Order>ORDER</Order>
               </Purchase>
@@ -73,7 +99,7 @@ const TitleContent = styled.Text`
   font-size: 20px;
   color: black;
   font-weight: 700;
-  margin: 20px 14px 10px 14px;
+  margin: 10px 14px 10px 14px;
 `;
 
 const DescContent = styled.Text`
@@ -84,8 +110,6 @@ const DescContent = styled.Text`
 `;
 
 const GambarSepatu = styled.Image`
-  width: 100%;
-  height: 50%;
   margin: 6px;
   padding: 6px;
   position: relative;
@@ -97,7 +121,7 @@ const Purchase = styled.View`
   background: white;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.01);
   margin-bottom: 1px;
 `;
 const Order = styled.Text`
@@ -129,7 +153,7 @@ const Title = styled.Text`
   font-size: 36px;
   color: white;
   font-weight: bold;
-  width: 200px;
+  width: 210px;
   position: absolute;
   top: 78px;
   left: 20px;
@@ -154,7 +178,7 @@ const CloseView = styled.View`
   justify-content: center;
   align-items: center;
   margin-right: 5px;
-  margin-top: 5px;
+  margin-top: 2px;
 `;
 
 const Wrapper = styled.View`
