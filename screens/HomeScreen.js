@@ -269,6 +269,18 @@ const logos = [
 
 const cards = [
   {
+    title: "AT HOME",
+    image: require("../assets/cards/bg2.png"),
+    subtitle: "FAST CLEANING IN YOUR HOME",
+    caption: "1 HOUR",
+    logo: require("../assets/deekey_white.jpg"),
+    info: "Package included:",
+    gambarInfo: require("../assets/treatment.png"),
+    detailTreatment: "MIDSOLE & UPPER PART ONLY",
+    timeTreatment: "1 HOUR",
+    price: "IDR 35.000",
+  },
+  {
     title: "SUPER DETAILING",
     image: require("../assets/cards/bg2.png"),
     subtitle: "All-Sole + Extra Finishing",
