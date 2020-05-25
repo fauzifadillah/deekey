@@ -38,7 +38,7 @@ class CardOther extends React.Component {
           <Title>{this.props.title}</Title>
         </Cover>
         <Content>
-          <Logo source={this.props.logo} />
+          {/* <Logo source={this.props.logo} /> */}
           <Wrapper>
             <Caption>{this.props.caption}</Caption>
             <Subtitle>{this.props.subtitle}</Subtitle>

@@ -79,7 +79,9 @@ class SectionSceen extends React.Component {
             <TouchableOpacity
               style={{ marginTop: 0 }}
               onPress={() => {
-                this.props.navigation.navigate("Checkout");
+                this.props.navigation.push("Checkout", {
+                  title: section.title,
+                });
               }}
             >
               <Purchase>

@@ -5,6 +5,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   TouchableWithoutFeedbackComponent,
+  Picker,
 } from "react-native";
 
 const screenWidth = Dimensions.get("window").width;
@@ -31,18 +32,21 @@ class CheckoutScreen extends React.Component {
     tabBarVisible: false,
   };
   render() {
+    const { navigation } = this.props;
+    const title = navigation.getParam("title");
     return (
       <Container>
         <TouchableWithoutFeedback onPress={tapBackground}>
           <Modal>
             <Logo source={require("../assets/deekey.png")} />
             <Text>Order Placement. Invest for cleanliness</Text>
+            <TextInput placeholder="Type of Treatment" maxLength={40} />
+            <TextInput placeholder="QTY" maxLength={2} />
             <TextInput placeholder="Your Name" maxLength={40} />
             <TextInput placeholder="Your E-Mail" maxLength={40} />
             <TextInput placeholder="Your Phone Number" maxLength={40} />
             <TextInput placeholder="Your Address" maxLength={40} />
-            <TextInput placeholder="Your Name" maxLength={40} />
-            <TextInput placeholder="Your Name" maxLength={40} />
+
             <Button>
               <ButtonText>SUBMIT</ButtonText>
             </Button>

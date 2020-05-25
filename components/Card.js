@@ -12,7 +12,7 @@ const Card = (props) => (
       <Title>{props.title}</Title>
     </Cover>
     <Content>
-      <Logo source={props.logo} />
+      {/* <Logo source={props.logo} /> */}
       <Wrapper>
         <Caption>{props.caption}</Caption>
         <Subtitle>{props.subtitle}</Subtitle>
